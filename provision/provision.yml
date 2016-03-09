@@ -1,0 +1,33 @@
+# file: provision.yml
+
+- hosts: all
+  gather_facts: yes
+  roles:
+    - role: ANXS.hostname
+    - role: ANXS.apt
+    - role: ANXS.ntp
+    - role: ANXS.timezone
+    - role: ANXS.generic-users
+    - role: ANXS.generic-directories
+    - role: ANXS.build-essential
+    - role: ANXS.vim
+    - role: ANXS.git
+    - role: ANXS.openssh
+    - role: ANXS.cron
+    - role: ANXS.utilities
+    - role: ANXS.bootstraps
+    - role: ANXS.fail2ban
+    - role: ANXS.tmpreaper
+    - role: ssh-config
+  vars_files:
+    - 'secret_vars/paidy_secrets.yml'
+  vars_prompt:
+    - name: "my_username"
+      prompt: "Enter username"
+    - name: "my_password"
+      prompt: "Enter password"
+      private: yes
+      encrypt: "md5_crypt"
+      confirm: yes
+      salt_size: 7
+      salt: "vagrant"

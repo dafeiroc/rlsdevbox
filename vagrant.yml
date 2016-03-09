@@ -1,0 +1,29 @@
+---
+- name: Setup users
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Auth | Make sure the users are present
+      user:
+        name: "{{item.name}}"
+        uid: "{{item.uid}}"
+        password: "{{item.passwd}}"
+        shell: "{{item.shell}}"
+        comment: "{{item.comment}}"
+        groups: "{{','.join(item.groups)}}"
+        append: "{{item.append}}"
+      with_items: "{{users}}"
+    - name: Auth | SSH authorized key setup
+      authorized_key:
+        user: "{{item.user}}"
+        key: "{{item.key}}"
+      with_items: "{{keys}}"
+  vars:
+    users:
+      [
+        {name: vagrant, uid: 1000, passwd: '$6$yamanote$gSPglFOaTkiWBH.LuUAJXC/Q/uYOigfI.Ydy8jGbUHD9JgUMVl7nMAWAoICrNToYMqcT.Gfw9/EBh5xEX2WK20', comment: 'vagrant', shell: '/bin/bash', groups: [vagrant, adm, cdrom, sudo, dip, plugdev, admin, staff], append: no}
+      ]
+    keys:
+      [
+        {user: vagrant, key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"}
+      ]

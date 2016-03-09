@@ -1,0 +1,27 @@
+# file: ssh-config/tasks/main.yml
+
+- name: ssh-config | Make sure your host aliases are present
+  lineinfile: 
+    dest: /etc/hosts
+    line: "{{ item }}"
+  with_items: sshconfig_hosts
+
+- name: ssh-config | Make sure all private identify keys are present
+  template:
+    src: private_key.j2
+    dest: "/home/{{ item.user }}/.ssh/{{ item.file }}"
+    owner: "{{ item.user }}"
+    group: "{{ item.user }}"
+    mode: 0600
+  with_items: sshconfig_keys
+
+- name: ssh-config | Make sure all ssh config entries are present
+  ssh_config:
+    user: "{{ item.user|default(omit) }}"
+    host: "{{ item.host|default(omit) }}"
+    hostname: "{{ item.hostname|default(omit) }}"
+    port: "{{ item.port|default(omit) }}"
+    remote_user: "{{ item.remote_user|default(omit) }}"
+    identity_file: "/home/{{ item.user }}/.ssh/{{ item.identity_file }}"
+    local_forward: "{{ item.local_forward|default([]) }}"
+  with_items: sshconfig_entries

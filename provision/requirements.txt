@@ -1,0 +1,15 @@
+ANXS.hostname
+ANXS.apt
+ANXS.ntp
+ANXS.timezone
+ANXS.generic-users
+ANXS.generic-directories
+ANXS.build-essential
+ANXS.vim
+ANXS.git
+ANXS.openssh
+ANXS.cron
+ANXS.utilities
+ANXS.bootstraps
+ANXS.fail2ban
+ANXS.tmpreaper
