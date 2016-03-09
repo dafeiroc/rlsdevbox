@@ -12,49 +12,49 @@ Make sure that all the requirements are present
 - [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
 - Ansible (via [Homebrew](http://brew.sh/))
 
-    ```
+    ```bash
     # fresh install
-    brew update
-    brew install ansible
+    $brew update
+    $brew install ansible
 
     # update
-    brew update
-    brew upgrade ansible
+    $brew update
+    $brew upgrade ansible
     ```
 
 - Passlib 
 
-    ```
-    sudo pip install passlib
+    ```bash
+    $sudo pip install passlib
     ```
 
 - Vagrant docker-compose provisioner plugin
 
-    ```
-    vagrant plugin install vagrant-docker-compose
+    ```bash
+    $vagrant plugin install vagrant-docker-compose
     ```
 
 - RSA Key(!!! If you already have your key in .ssh/, you don't need to generate!!!)
 
     Generate a private/public rsa keypair for your devbox
-    ```
-    ssh-keygen -t rsa 
+    ```bash
+    $ssh-keygen -t rsa 
     ```
 
 ### Getting started
 
 1. Start the vagrant box
 
-    ```
-    # change directory to where the Vagrantfile is, and then
-    vagrant up
+    ```bash
+    #change directory to where the Vagrantfile is, and then
+    $vagrant up
     ```
 
 2. Provision the vagrant box
 
-    ```
+    ```bash
     # get the latest version of the ansible roles
-    ansible-galaxy install -f -r provision/requirements.txt
+    $ansible-galaxy install -f -r provision/requirements.txt
 
     # provision with ansible
     # vault-pass will be given by a paidy dev
