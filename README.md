@@ -34,7 +34,7 @@ Make sure that all the requirements are present
     $vagrant plugin install vagrant-docker-compose
     ```
 
-- RSA Key(!!! If you already have your key in .ssh/, you don't need to generate!!!)
+- RSA Key(**If you already have your key in ~/.ssh/, you don't need to generate**)
 
     Generate a private/public rsa keypair for your devbox
     ```bash
