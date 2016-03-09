@@ -18,9 +18,6 @@
     - role: ANXS.bootstraps
     - role: ANXS.fail2ban
     - role: ANXS.tmpreaper
-    - role: ssh-config
-  vars_files:
-    - 'secret_vars/paidy_secrets.yml'
   vars_prompt:
     - name: "my_username"
       prompt: "Enter username"

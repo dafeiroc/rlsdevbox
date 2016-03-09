@@ -54,22 +54,14 @@ Make sure that all the requirements are present
 
     ```bash
     # get the latest version of the ansible roles
-    $ansible-galaxy install -f -r provision/requirements.txt
+    $ansible-galaxy install -f -r requirements.txt
 
     # provision with ansible
-    # vault-pass will be given by a paidy dev
+    # vault-pass will be given by a rls dev
     # username & password prompt are for the username/password you wish to use. It's
     # easiest to choose the same username as that on the host machine
-    ansible-playbook -i vagrant provision/provision.yml -u vagrant --sudo –-ask-vault-pass
+     $ansible-playbook -i vagrant provision.yml -u vagrant --sudo
     ```
-
-    *HINT:* if you copy and paste the last line instead of typing it you might
-    get the following error, if so type it manually.
-
-    ```
-    ERROR: the playbook: –-ask-vault-pass could not be found
-    ```
-
 
 3. Connect to your freshly installed and provisioned vagrant dev machine
 

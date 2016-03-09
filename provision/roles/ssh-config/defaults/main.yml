@@ -1,4 +1,0 @@
-# file: ssh-config/defaults/main.yml
-
-sshconfig_keys: []
-sshconfig_entries: []

@@ -1,0 +1,52 @@
+##### * apt
+
+apt_reset_source_list: no         # reset the /etc/apt/sources.list to the default
+apt_cache_valid_time: 3600        # Time (in seconds) the apt cache stays valid
+apt_install_recommends: "true"
+apt_install_suggests: "false"
+
+
+##### * generic-users
+
+genericusers_groups:
+  - name: "developer"
+    gid: 6666
+    system: no
+
+genericusers_users:
+  - name: "{{my_username}}"
+    groups: ["adm", "cdrom", "sudo", "dip", "plugdev", "admin", "staff", "developer", "docker"]
+    append: "no"
+    pass: "{{my_password}}"
+    comment: "{{my_username}}"
+    shell: "/bin/bash"
+    home: "/home/{{my_username}}"
+    system: no
+    ssh_keys:
+      - "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+
+##### * generic-directories
+
+genericdirectories_directories:
+  - path: "/srv/www"
+    owner: "www-data"
+    group: "www-data"
+    mode: "0644"
+
+
+##### * vim
+
+vim_base: "vim-nox"     # package name of your favourite vim flavour
+
+
+##### * git
+
+git_version: "2.1.0"
+
+
+bootstraps_commands:
+  - user: "{{my_username}}"
+    command: "cd /tmp && git clone https://github.com/pjan/ubuntu-dotfiles.git && cd ubuntu-dotfiles && set -- -f && source bootstrap.sh"
+  - user: "{{my_username}}"
+    command: "cd /tmp && git clone https://github.com/pjan/vim-config.git && cd vim-config && set -- -f && source bootstrap.sh"
