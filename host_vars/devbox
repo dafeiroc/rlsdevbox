@@ -44,9 +44,7 @@ vim_base: "vim-nox"     # package name of your favourite vim flavour
 
 git_version: "2.1.0"
 
-
+##### TODO: provide login script
 bootstraps_commands:
   - user: "{{my_username}}"
-    command: "cd /tmp && git clone https://github.com/pjan/ubuntu-dotfiles.git && cd ubuntu-dotfiles && set -- -f && source bootstrap.sh"
-  - user: "{{my_username}}"
-    command: "cd /tmp && git clone https://github.com/pjan/vim-config.git && cd vim-config && set -- -f && source bootstrap.sh"
+    command: "cd /tmp"
